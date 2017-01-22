@@ -5,15 +5,15 @@ package com.lukgru.npuzzles.model;
  */
 public class Piece {
 
-    private int value;
+    private String value;
     private Position position;
 
-    public Piece(int value, Position position) {
+    public Piece(String value, Position position) {
         this.value = value;
         this.position = position;
     }
 
-    public int getValue() {
+    public String getValue() {
         return value;
     }
 
@@ -23,5 +23,24 @@ public class Piece {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Piece piece = (Piece) o;
+
+        if (value != null ? !value.equals(piece.value) : piece.value != null) return false;
+        return position != null ? position.equals(piece.position) : piece.position == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = value != null ? value.hashCode() : 0;
+        result = 31 * result + (position != null ? position.hashCode() : 0);
+        return result;
     }
 }
