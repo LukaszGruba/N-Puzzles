@@ -11,8 +11,11 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        Board board = new BoardBuilder(args).build();
-        List<Move> solution = new NPuzzlesSolver(new ManhattanHeuristic()).solve(board);
+        String[] boardString = null; //TODO: extract from input
+        String[] targetString = null;
+        Board board = new BoardBuilder(boardString).build();
+        Board targetBoard = new BoardBuilder(targetString).build();
+        List<Move> solution = new NPuzzlesSolver(new ManhattanHeuristic()).solve(board, targetBoard);
         new SolutionPrinter(System.out).print(solution);
     }
 

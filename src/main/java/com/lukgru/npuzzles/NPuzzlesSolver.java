@@ -16,7 +16,7 @@ public class NPuzzlesSolver {
         this.heuristic = heuristic;
     }
 
-    public List<Move> solve(Board board) {
+    public List<Move> solve(Board board, Board target) {
         throw new UnsupportedOperationException("Not implemented yet!");
     }
 }
