@@ -5,6 +5,8 @@ package com.lukgru.npuzzles.model;
  */
 public class Piece {
 
+    public static final String EMPTY = "";
+
     private String value;
     private Position position;
 
@@ -42,5 +44,13 @@ public class Piece {
         int result = value != null ? value.hashCode() : 0;
         result = 31 * result + (position != null ? position.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Piece{" +
+                "value='" + value + '\'' +
+                ", position=" + position +
+                '}';
     }
 }
