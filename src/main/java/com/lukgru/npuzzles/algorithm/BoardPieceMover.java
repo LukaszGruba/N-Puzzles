@@ -1,4 +1,4 @@
-package com.lukgru.npuzzles;
+package com.lukgru.npuzzles.algorithm;
 
 import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Piece;

@@ -1,6 +1,4 @@
-package com.lukgru.npuzzles;
-
-import com.lukgru.npuzzles.model.Board;
+package com.lukgru.npuzzles.model;
 
 /**
  * Created by Lukasz on 22.01.2017.

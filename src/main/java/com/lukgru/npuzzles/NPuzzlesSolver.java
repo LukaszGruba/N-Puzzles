@@ -1,5 +1,6 @@
 package com.lukgru.npuzzles;
 
+import com.lukgru.npuzzles.algorithm.Move;
 import com.lukgru.npuzzles.heuristic.Heuristic;
 import com.lukgru.npuzzles.model.Board;
 

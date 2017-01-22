@@ -1,7 +1,11 @@
 package com.lukgru.npuzzles;
 
+import com.lukgru.npuzzles.algorithm.Move;
 import com.lukgru.npuzzles.heuristic.ManhattanHeuristic;
+import com.lukgru.npuzzles.io.InputParser;
+import com.lukgru.npuzzles.io.SolutionPrinter;
 import com.lukgru.npuzzles.model.Board;
+import com.lukgru.npuzzles.model.BoardBuilder;
 
 import java.util.List;
 
@@ -11,6 +15,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
+        new InputParser(System.in).parse();
         String[] boardString = null; //TODO: extract from input
         String[] targetString = null;
         Board board = new BoardBuilder(boardString).build();

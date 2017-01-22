@@ -1,5 +1,6 @@
 package com.lukgru.npuzzles;
 
+import com.lukgru.npuzzles.algorithm.BoardPieceMover;
 import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Piece;
 import com.lukgru.npuzzles.model.Position;

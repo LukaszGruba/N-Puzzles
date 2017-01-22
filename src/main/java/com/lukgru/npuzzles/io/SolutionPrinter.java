@@ -1,4 +1,6 @@
-package com.lukgru.npuzzles;
+package com.lukgru.npuzzles.io;
+
+import com.lukgru.npuzzles.algorithm.Move;
 
 import java.io.PrintStream;
 import java.util.List;
