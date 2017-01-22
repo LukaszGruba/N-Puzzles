@@ -22,15 +22,17 @@ public class Position {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
-        Position position = (Position) o;
+        Position position = (Position) obj;
 
-        if (x != position.x) return false;
-        return y == position.y;
-
+        return x == position.x && y == position.y;
     }
 
     @Override
@@ -42,9 +44,6 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Position{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return "Position{" + "x=" + x + ", y=" + y + '}';
     }
 }

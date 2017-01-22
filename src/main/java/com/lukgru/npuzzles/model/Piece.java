@@ -28,15 +28,20 @@ public class Piece {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
-        Piece piece = (Piece) o;
+        Piece piece = (Piece) obj;
 
-        if (value != null ? !value.equals(piece.value) : piece.value != null) return false;
+        if (value != null ? !value.equals(piece.value) : piece.value != null) {
+            return false;
+        }
         return position != null ? position.equals(piece.position) : piece.position == null;
-
     }
 
     @Override
@@ -48,9 +53,6 @@ public class Piece {
 
     @Override
     public String toString() {
-        return "Piece{" +
-                "value='" + value + '\'' +
-                ", position=" + position +
-                '}';
+        return "Piece{" + "value='" + value + '\'' + ", position=" + position + '}';
     }
 }

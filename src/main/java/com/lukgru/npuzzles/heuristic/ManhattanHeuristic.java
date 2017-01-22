@@ -1,8 +1,8 @@
 package com.lukgru.npuzzles.heuristic;
 
-import com.lukgru.npuzzles.model.Position;
-
 import static java.lang.Math.abs;
+
+import com.lukgru.npuzzles.model.Position;
 
 /**
  * Created by Lukasz on 22.01.2017.

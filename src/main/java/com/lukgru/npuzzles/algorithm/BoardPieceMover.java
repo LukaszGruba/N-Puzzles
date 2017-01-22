@@ -1,12 +1,12 @@
 package com.lukgru.npuzzles.algorithm;
 
+import static com.lukgru.npuzzles.model.Piece.EMPTY;
+
 import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Piece;
 import com.lukgru.npuzzles.model.Position;
 
 import java.util.Arrays;
-
-import static com.lukgru.npuzzles.model.Piece.EMPTY;
 
 /**
  * Created by Lukasz on 22.01.2017.
