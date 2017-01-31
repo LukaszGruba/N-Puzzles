@@ -5,7 +5,7 @@ package com.lukgru.npuzzles.model;
  */
 public class Piece {
 
-    public static final String EMPTY = "";
+    public static final String EMPTY = "X";
 
     private String value;
     private Position position;
