@@ -1,20 +1,27 @@
 package com.lukgru.npuzzles.io;
 
-import java.io.InputStream;
+import com.lukgru.npuzzles.model.Board;
+import com.lukgru.npuzzles.model.Piece;
+import com.lukgru.npuzzles.model.Position;
+
+import java.util.Objects;
 
 /**
  * Created by Lukasz on 22.01.2017.
  */
 public class InputParser {
 
-    private InputStream stream;
+    public Board parse(String[] lines) {
+        Objects.nonNull(lines);
 
-    public InputParser(InputStream stream) {
-        this.stream = stream;
-    }
-
-    public ParseResult parse() {
-        //TODO: implement
-        throw new UnsupportedOperationException("Not implemented yet!");
+        Piece[][] pieces = new Piece[lines.length][];
+        for (int i = 0; i < lines.length; i++) {
+            String[] rowElements = lines[i].split("\\s+");
+            pieces[i] = new Piece[rowElements.length];
+            for (int j = 0; j < rowElements.length; j++) {
+                pieces[i][j] = new Piece(rowElements[j], new Position(j, i));
+            }
+        }
+        return new Board(pieces);
     }
 }

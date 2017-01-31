@@ -5,7 +5,6 @@ import com.lukgru.npuzzles.heuristic.ManhattanHeuristic;
 import com.lukgru.npuzzles.io.InputParser;
 import com.lukgru.npuzzles.io.SolutionPrinter;
 import com.lukgru.npuzzles.model.Board;
-import com.lukgru.npuzzles.model.BoardBuilder;
 
 import java.util.List;
 
@@ -15,13 +14,22 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        new InputParser(System.in).parse();
-        String[] boardString = null; //TODO: extract from input
-        String[] targetString = null;
-        Board board = new BoardBuilder(boardString).build();
-        Board targetBoard = new BoardBuilder(targetString).build();
+        Board board = getBoard();
+        Board targetBoard = getTarget();
         List<Move> solution = new NPuzzlesSolver(new ManhattanHeuristic()).solve(board, targetBoard);
         new SolutionPrinter(System.out).print(solution);
+    }
+
+    private static Board getBoard() {
+        System.out.println("Provide initial state of NxN matrix:");
+        String[] boardLines = null; //TODO: read from input
+        return new InputParser().parse(boardLines);
+    }
+
+    private static Board getTarget() {
+        System.out.println("\nProvide target state of NxN matrix:");
+        String[] targetLines = null; //TODO: read from input
+        return new InputParser().parse(targetLines);
     }
 
 }
