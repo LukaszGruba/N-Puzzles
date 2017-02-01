@@ -17,6 +17,10 @@ public class SolutionPrinter {
     }
 
     public void print(List<Move> solution) {
-        //TODO: implement
+        printStream.println("Solution:");
+        solution.stream()
+                .map(Move::toString)
+                .map(m -> m + " -> ")
+                .forEach(printStream::print);
     }
 }
