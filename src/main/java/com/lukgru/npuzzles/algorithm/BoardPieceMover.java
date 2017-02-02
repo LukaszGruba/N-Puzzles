@@ -1,21 +1,21 @@
 package com.lukgru.npuzzles.algorithm;
 
-import static com.lukgru.npuzzles.model.Piece.EMPTY;
-
 import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Piece;
 import com.lukgru.npuzzles.model.Position;
 
-import java.util.Arrays;
+import static com.lukgru.npuzzles.model.Piece.EMPTY;
 
 /**
  * Created by Lukasz on 22.01.2017.
  */
 public class BoardPieceMover {
 
+    private PiecePositionFinder positionFinder = new PiecePositionFinder();
+
     public boolean fillGapByPieceFromLeft(Board board) {
         Piece[][] boardArray = board.getBoardArray();
-        Position emptyPosition = getEmptyPosition(boardArray);
+        Position emptyPosition = positionFinder.getElementPosition(boardArray, EMPTY);
         int emptyX = emptyPosition.getX();
         int emptyY = emptyPosition.getY();
         int newX = emptyX - 1;
@@ -34,7 +34,7 @@ public class BoardPieceMover {
 
     public boolean fillGapByPieceFromRight(Board board) {
         Piece[][] boardArray = board.getBoardArray();
-        Position emptyPosition = getEmptyPosition(boardArray);
+        Position emptyPosition = positionFinder.getElementPosition(boardArray, EMPTY);
         int emptyX = emptyPosition.getX();
         int emptyY = emptyPosition.getY();
         int newX = emptyX + 1;
@@ -53,7 +53,7 @@ public class BoardPieceMover {
 
     public boolean fillGapByPieceFromUp(Board board) {
         Piece[][] boardArray = board.getBoardArray();
-        Position emptyPosition = getEmptyPosition(boardArray);
+        Position emptyPosition = positionFinder.getElementPosition(boardArray, EMPTY);
         int emptyX = emptyPosition.getX();
         int emptyY = emptyPosition.getY();
         int newX = emptyX;
@@ -72,7 +72,7 @@ public class BoardPieceMover {
 
     public boolean fillGapByPieceFromDown(Board board) {
         Piece[][] boardArray = board.getBoardArray();
-        Position emptyPosition = getEmptyPosition(boardArray);
+        Position emptyPosition = positionFinder.getElementPosition(boardArray, EMPTY);
         int emptyX = emptyPosition.getX();
         int emptyY = emptyPosition.getY();
         int newX = emptyX;
@@ -87,14 +87,5 @@ public class BoardPieceMover {
             return true;
         }
         return false;
-    }
-
-    private Position getEmptyPosition(Piece[][] pieces) {
-        return Arrays.stream(pieces)
-                .flatMap(Arrays::stream)
-                .filter(piece -> piece.getValue().equals(EMPTY))
-                .map(Piece::getPosition)
-                .findFirst()
-                .orElse(null);
     }
 }
