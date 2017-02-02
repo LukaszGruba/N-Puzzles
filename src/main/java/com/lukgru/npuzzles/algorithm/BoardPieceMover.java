@@ -13,7 +13,7 @@ public class BoardPieceMover {
 
     private PiecePositionFinder positionFinder = new PiecePositionFinder();
 
-    public boolean fillGapByPieceFromLeft(Board board) {
+    public Board fillGapByPieceFromLeft(Board board) {
         Piece[][] boardArray = board.getBoardArray();
         Position emptyPosition = positionFinder.getElementPosition(boardArray, EMPTY);
         int emptyX = emptyPosition.getX();
@@ -27,12 +27,11 @@ public class BoardPieceMover {
             empty.setPosition(pieceToMove.getPosition());
             boardArray[emptyY][emptyX] = pieceToMove;
             pieceToMove.setPosition(emptyPosition);
-            return true;
         }
-        return false;
+        return new Board(boardArray);
     }
 
-    public boolean fillGapByPieceFromRight(Board board) {
+    public Board fillGapByPieceFromRight(Board board) {
         Piece[][] boardArray = board.getBoardArray();
         Position emptyPosition = positionFinder.getElementPosition(boardArray, EMPTY);
         int emptyX = emptyPosition.getX();
@@ -46,12 +45,11 @@ public class BoardPieceMover {
             empty.setPosition(pieceToMove.getPosition());
             boardArray[emptyY][emptyX] = pieceToMove;
             pieceToMove.setPosition(emptyPosition);
-            return true;
         }
-        return false;
+        return new Board(boardArray);
     }
 
-    public boolean fillGapByPieceFromUp(Board board) {
+    public Board fillGapByPieceFromUp(Board board) {
         Piece[][] boardArray = board.getBoardArray();
         Position emptyPosition = positionFinder.getElementPosition(boardArray, EMPTY);
         int emptyX = emptyPosition.getX();
@@ -65,12 +63,11 @@ public class BoardPieceMover {
             empty.setPosition(pieceToMove.getPosition());
             boardArray[emptyY][emptyX] = pieceToMove;
             pieceToMove.setPosition(emptyPosition);
-            return true;
         }
-        return false;
+        return new Board(boardArray);
     }
 
-    public boolean fillGapByPieceFromDown(Board board) {
+    public Board fillGapByPieceFromDown(Board board) {
         Piece[][] boardArray = board.getBoardArray();
         Position emptyPosition = positionFinder.getElementPosition(boardArray, EMPTY);
         int emptyX = emptyPosition.getX();
@@ -84,8 +81,7 @@ public class BoardPieceMover {
             empty.setPosition(pieceToMove.getPosition());
             boardArray[emptyY][emptyX] = pieceToMove;
             pieceToMove.setPosition(emptyPosition);
-            return true;
         }
-        return false;
+        return new Board(boardArray);
     }
 }

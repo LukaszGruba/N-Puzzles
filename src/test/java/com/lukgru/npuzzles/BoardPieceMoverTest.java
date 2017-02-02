@@ -7,7 +7,7 @@ import com.lukgru.npuzzles.model.Position;
 import org.junit.Test;
 
 import static com.lukgru.npuzzles.model.Piece.EMPTY;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Lukasz on 22.01.2017.
@@ -29,14 +29,13 @@ public class BoardPieceMoverTest {
         };
 
         //when
-        boolean moved = pieceMover.fillGapByPieceFromUp(new Board(pieces));
+        Board board = pieceMover.fillGapByPieceFromUp(new Board(pieces));
 
         //then
-        assertTrue(moved);
-        assertPiecePosition(p1, 0, 0, pieces);
-        assertPiecePosition(p2, 1, 1, pieces);
-        assertPiecePosition(p3, 0, 1, pieces);
-        assertPiecePosition(pX, 1, 0, pieces);
+        assertPiecePosition("1", 0, 0, board.getBoardArray());
+        assertPiecePosition("2", 1, 1, board.getBoardArray());
+        assertPiecePosition("3", 0, 1, board.getBoardArray());
+        assertPiecePosition("X", 1, 0, board.getBoardArray());
     }
 
     @Test
@@ -52,14 +51,13 @@ public class BoardPieceMoverTest {
         };
 
         //when
-        boolean moved = pieceMover.fillGapByPieceFromDown(new Board(pieces));
+        Board board = pieceMover.fillGapByPieceFromDown(new Board(pieces));
 
         //then
-        assertTrue(moved);
-        assertPiecePosition(p1, 0, 0, pieces);
-        assertPiecePosition(p2, 0, 1, pieces);
-        assertPiecePosition(p3, 1, 0, pieces);
-        assertPiecePosition(pX, 1, 1, pieces);
+        assertPiecePosition("1", 0, 0, board.getBoardArray());
+        assertPiecePosition("2", 0, 1, board.getBoardArray());
+        assertPiecePosition("3", 1, 0, board.getBoardArray());
+        assertPiecePosition("X", 1, 1, board.getBoardArray());
     }
 
     @Test
@@ -75,14 +73,13 @@ public class BoardPieceMoverTest {
         };
 
         //when
-        boolean moved = pieceMover.fillGapByPieceFromLeft(new Board(pieces));
+        Board board = pieceMover.fillGapByPieceFromLeft(new Board(pieces));
 
         //then
-        assertTrue(moved);
-        assertPiecePosition(p1, 0, 0, pieces);
-        assertPiecePosition(p2, 1, 0, pieces);
-        assertPiecePosition(p3, 1, 1, pieces);
-        assertPiecePosition(pX, 0, 1, pieces);
+        assertPiecePosition("1", 0, 0, board.getBoardArray());
+        assertPiecePosition("2", 1, 0, board.getBoardArray());
+        assertPiecePosition("3", 1, 1, board.getBoardArray());
+        assertPiecePosition("X", 0, 1, board.getBoardArray());
     }
 
     @Test
@@ -98,14 +95,14 @@ public class BoardPieceMoverTest {
         };
 
         //when
-        boolean moved = pieceMover.fillGapByPieceFromRight(new Board(pieces));
+        Board inputBoard = new Board(pieces);
+        Board board = pieceMover.fillGapByPieceFromRight(inputBoard);
 
         //then
-        assertTrue(moved);
-        assertPiecePosition(p1, 0, 0, pieces);
-        assertPiecePosition(p2, 1, 0, pieces);
-        assertPiecePosition(p3, 0, 1, pieces);
-        assertPiecePosition(pX, 1, 1, pieces);
+        assertPiecePosition("1", 0, 0, board.getBoardArray());
+        assertPiecePosition("2", 1, 0, board.getBoardArray());
+        assertPiecePosition("3", 0, 1, board.getBoardArray());
+        assertPiecePosition("X", 1, 1, board.getBoardArray());
     }
 
     @Test
@@ -121,14 +118,13 @@ public class BoardPieceMoverTest {
         };
 
         //when
-        boolean moved = pieceMover.fillGapByPieceFromUp(new Board(pieces));
+        Board board = pieceMover.fillGapByPieceFromUp(new Board(pieces));
 
         //then
-        assertFalse(moved);
-        assertPiecePosition(p1, 0, 0, pieces);
-        assertPiecePosition(p2, 1, 1, pieces);
-        assertPiecePosition(p3, 0, 1, pieces);
-        assertPiecePosition(pX, 1, 0, pieces);
+        assertPiecePosition("1", 0, 0, board.getBoardArray());
+        assertPiecePosition("2", 1, 1, board.getBoardArray());
+        assertPiecePosition("3", 0, 1, board.getBoardArray());
+        assertPiecePosition("X", 1, 0, board.getBoardArray());
     }
 
     @Test
@@ -144,14 +140,13 @@ public class BoardPieceMoverTest {
         };
 
         //when
-        boolean moved = pieceMover.fillGapByPieceFromDown(new Board(pieces));
+        Board board = pieceMover.fillGapByPieceFromDown(new Board(pieces));
 
         //then
-        assertFalse(moved);
-        assertPiecePosition(p1, 0, 0, pieces);
-        assertPiecePosition(p2, 1, 0, pieces);
-        assertPiecePosition(p3, 0, 1, pieces);
-        assertPiecePosition(pX, 1, 1, pieces);
+        assertPiecePosition("1", 0, 0, board.getBoardArray());
+        assertPiecePosition("2", 1, 0, board.getBoardArray());
+        assertPiecePosition("3", 0, 1, board.getBoardArray());
+        assertPiecePosition("X", 1, 1, board.getBoardArray());
     }
 
     @Test
@@ -167,14 +162,13 @@ public class BoardPieceMoverTest {
         };
 
         //when
-        boolean moved = pieceMover.fillGapByPieceFromLeft(new Board(pieces));
+        Board board = pieceMover.fillGapByPieceFromLeft(new Board(pieces));
 
         //then
-        assertFalse(moved);
-        assertPiecePosition(p1, 0, 0, pieces);
-        assertPiecePosition(p2, 1, 0, pieces);
-        assertPiecePosition(p3, 1, 1, pieces);
-        assertPiecePosition(pX, 0, 1, pieces);
+        assertPiecePosition("1", 0, 0, board.getBoardArray());
+        assertPiecePosition("2", 1, 0, board.getBoardArray());
+        assertPiecePosition("3", 1, 1, board.getBoardArray());
+        assertPiecePosition("X", 0, 1, board.getBoardArray());
     }
 
     @Test
@@ -190,18 +184,17 @@ public class BoardPieceMoverTest {
         };
 
         //when
-        boolean moved = pieceMover.fillGapByPieceFromRight(new Board(pieces));
+        Board board = pieceMover.fillGapByPieceFromRight(new Board(pieces));
 
         //then
-        assertFalse(moved);
-        assertPiecePosition(p1, 0, 0, pieces);
-        assertPiecePosition(p2, 1, 0, pieces);
-        assertPiecePosition(p3, 0, 1, pieces);
-        assertPiecePosition(pX, 1, 1, pieces);
+        assertPiecePosition("1", 0, 0, board.getBoardArray());
+        assertPiecePosition("2", 1, 0, board.getBoardArray());
+        assertPiecePosition("3", 0, 1, board.getBoardArray());
+        assertPiecePosition("X", 1, 1, board.getBoardArray());
     }
 
-    private void assertPiecePosition(Piece p, int x, int y, Piece[][] pieces) {
-        assertEquals(pieces[y][x], p);
-        assertEquals(new Position(x, y), p.getPosition());
+    private void assertPiecePosition(String value, int x, int y, Piece[][] pieces) {
+        assertEquals(value, pieces[y][x].getValue());
+        assertEquals(new Position(x, y), pieces[y][x].getPosition());
     }
 }
