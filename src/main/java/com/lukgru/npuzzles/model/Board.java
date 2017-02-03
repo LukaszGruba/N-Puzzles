@@ -20,9 +20,9 @@ public class Board {
         Piece[][] newPieces = new Piece[boardArray.length][boardArray[0].length];
         piecesStream().forEach(piece -> {
             String value = piece.getValue();
-            int x = piece.getPosition().getX();
-            int y = piece.getPosition().getY();
-            newPieces[y][x] = new Piece(value, new Position(x, y));
+            int posX = piece.getPosition().getX();
+            int posY = piece.getPosition().getY();
+            newPieces[posY][posX] = new Piece(value, new Position(posX, posY));
         });
         return newPieces;
     }
