@@ -16,7 +16,8 @@ public class PiecePositionFinder {
                 .filter(piece -> piece.getValue().equals(toFind))
                 .map(Piece::getPosition)
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new IllegalArgumentException("Could not find element: "
+                                + toFind + " in the boards."));
     }
 
 }

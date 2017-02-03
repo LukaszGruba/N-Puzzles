@@ -44,4 +44,18 @@ public class PiecePositionFinderTest {
         assertEquals(new Position(1, 2), p8);
         assertEquals(new Position(2, 2), pX);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void throwExceptionIfElementNotFound() {
+        //given
+        Board board = new InputParser().parse(new String[]{
+                "1 2 3",
+                "4 5 6",
+                "7 8 X"
+        });
+        String illegalElement = "9";
+
+        //when
+        new PiecePositionFinder().getElementPosition(board.getBoardArray(), illegalElement);
+    }
 }
