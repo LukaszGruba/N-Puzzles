@@ -1,6 +1,6 @@
 package com.lukgru.npuzzles.io;
 
-import com.lukgru.npuzzles.algorithm.Move;
+import com.lukgru.npuzzles.model.Board;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -16,10 +16,10 @@ public class SolutionPrinter {
         this.printStream = printStream;
     }
 
-    public void print(List<Move> solution) {
+    public void print(List<Board> solution) {
         printStream.println("Solution:");
         solution.stream()
-                .map(Move::toString)
+                .map(Board::toString)
                 .map(m -> m + " -> ")
                 .forEach(printStream::print);
     }

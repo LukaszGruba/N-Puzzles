@@ -1,6 +1,5 @@
 package com.lukgru.npuzzles;
 
-import com.lukgru.npuzzles.algorithm.Move;
 import com.lukgru.npuzzles.heuristic.ManhattanHeuristic;
 import com.lukgru.npuzzles.io.InputParser;
 import com.lukgru.npuzzles.io.SolutionPrinter;
@@ -18,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
         Board board = getBoard();
         Board targetBoard = getTarget();
-        List<Move> solution = new NPuzzlesSolver(new ManhattanHeuristic()).solve(board, targetBoard);
+        List<Board> solution = new NPuzzlesSolver(new ManhattanHeuristic()).solve(board, targetBoard);
         new SolutionPrinter(System.out).print(solution);
     }
 
