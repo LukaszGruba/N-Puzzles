@@ -54,8 +54,11 @@ public class Board {
     public String toString() {
         StringBuilder rows = new StringBuilder();
         for (Piece[] row : boardArray) {
-            rows.append(Arrays.toString(row));
+            Arrays.stream(row)
+                    .map(Piece::getValue)
+                    .forEach(value -> rows.append(value).append(" "));
+            rows.append("\n");
         }
-        return "Board{" + "boardArray=" + rows + '}';
+        return rows.toString();
     }
 }

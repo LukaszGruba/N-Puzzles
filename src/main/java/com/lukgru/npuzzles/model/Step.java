@@ -23,6 +23,6 @@ public class Step {
 
     @Override
     public String toString() {
-        return "Step{" + "state=" + state  + '}';
+        return "Step{\n" + state  + '}';
     }
 }
