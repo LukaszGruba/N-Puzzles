@@ -4,6 +4,7 @@ import com.lukgru.npuzzles.heuristic.Heuristic;
 import com.lukgru.npuzzles.heuristic.ManhattanHeuristic;
 import com.lukgru.npuzzles.io.InputParser;
 import com.lukgru.npuzzles.model.Board;
+import com.lukgru.npuzzles.model.Step;
 import org.junit.Test;
 
 import java.util.List;
@@ -31,12 +32,12 @@ public class NPuzzlesSolverTest {
         });
 
         //when
-        List<Board> solution = solver.solve(board, target);
+        List<Step> solution = solver.solve(board, target);
 
         //then
         assertNotNull(solution);
-        assertEquals(board, solution.get(0));
-        assertEquals(target, solution.get(solution.size() - 1));
+        assertEquals(board, solution.get(0).getState());
+        assertEquals(target, solution.get(solution.size() - 1).getState());
     }
 
     @Test
@@ -52,12 +53,12 @@ public class NPuzzlesSolverTest {
         });
 
         //when
-        List<Board> solution = solver.solve(board, target);
+        List<Step> solution = solver.solve(board, target);
 
         //then
         assertNotNull(solution);
-        assertEquals(board, solution.get(0));
-        assertEquals(target, solution.get(solution.size() - 1));
+        assertEquals(board, solution.get(0).getState());
+        assertEquals(target, solution.get(solution.size() - 1).getState());
     }
 
 
@@ -66,7 +67,7 @@ public class NPuzzlesSolverTest {
         //given
         Board board = new InputParser().parse(new String[]{
                 "6 2 X",
-                "7 9 1",
+                "7 8 1",
                 "3 4 5"
         });
         Board target = new InputParser().parse(new String[]{
@@ -76,11 +77,11 @@ public class NPuzzlesSolverTest {
         });
 
         //when
-        List<Board> solution = solver.solve(board, target);
+        List<Step> solution = solver.solve(board, target);
 
         //then
         assertNotNull(solution);
-        assertEquals(board, solution.get(0));
-        assertEquals(target, solution.get(solution.size() - 1));
+        assertEquals(board, solution.get(0).getState());
+        assertEquals(target, solution.get(solution.size() - 1).getState());
     }
 }
