@@ -6,6 +6,7 @@ import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Step;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -25,15 +26,12 @@ public class NPuzzlesSolver {
     public List<Step> solve(Board board, Board target) {
         heuristicEvaluator.setTargetState(target);
 
-        List<Step> steps = new ArrayList<>();
-        steps.add(new Step(board, null));
-
         Queue<Step> open = new PriorityQueue<>((s1, s2) -> compareBoards(s1.getState(), s2.getState()));
         List<Step> closed = new ArrayList<>();
         open.add(new Step(board, null));
         Step currentStep = open.poll();
 
-        while (currentStep != null && !currentStep.equals(target)) {
+        while (currentStep != null && !currentStep.getState().equals(target)) {
             closed.add(currentStep);
             addToOpenIfPossible(mover.fillGapByPieceFromUp(currentStep.getState()), currentStep, open, closed);
             addToOpenIfPossible(mover.fillGapByPieceFromDown(currentStep.getState()), currentStep, open, closed);
@@ -41,16 +39,20 @@ public class NPuzzlesSolver {
             addToOpenIfPossible(mover.fillGapByPieceFromRight(currentStep.getState()), currentStep, open, closed);
             currentStep = open.poll();
         }
-        steps.add(new Step(target, currentStep));
-        return steps;
+
+        return currentStep.getAllSteps();
     }
 
     private void addToOpenIfPossible(Board state, Step previousStep, Queue<Step> open, List<Step> closed) {
-        boolean isInOpen = open.stream().map(Step::getState).anyMatch(state::equals);
-        boolean isInClosed = closed.stream().map(Step::getState).anyMatch(state::equals);
+        boolean isInOpen = contains(state, open);
+        boolean isInClosed = contains(state, closed);
         if (!isInOpen && !isInClosed) {
             open.add(new Step(state, previousStep));
         }
+    }
+
+    private boolean contains(Board state, Collection<Step> open) {
+        return open.stream().map(Step::getState).anyMatch(state::equals);
     }
 
     private int compareBoards(Board b1, Board b2) {
