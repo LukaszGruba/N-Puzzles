@@ -1,5 +1,9 @@
 package com.lukgru.npuzzles.model;
 
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by Łukasz on 2017-02-03.
  */
@@ -17,12 +21,19 @@ public class Step {
         return this.state;
     }
 
-    public Step getPreviousState() {
-        return this.previousState;
-    }
-
     @Override
     public String toString() {
         return "Step{\n" + state  + '}';
+    }
+
+    public List<Step> getAllSteps() {
+        List<Step> steps = new LinkedList<>();
+        Step currentStep = this;
+        while (currentStep != null) {
+            steps.add(currentStep);
+            currentStep = currentStep.previousState;
+        }
+        Collections.reverse(steps);
+        return steps;
     }
 }
