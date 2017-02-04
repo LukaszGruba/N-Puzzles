@@ -9,7 +9,8 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by Lukasz on 03.02.2017.
@@ -57,8 +58,7 @@ public class NPuzzlesSolverTest {
 
         //then
         assertNotNull(solution);
-        assertEquals(board, solution.get(0).getState());
-        assertEquals(target, solution.get(solution.size() - 1).getState());
+        assertEquals(0, solution.size());
     }
 
 
