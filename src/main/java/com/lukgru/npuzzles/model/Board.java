@@ -49,4 +49,13 @@ public class Board {
     public int hashCode() {
         return Arrays.deepHashCode(boardArray);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder rows = new StringBuilder();
+        for (Piece[] row : boardArray) {
+            rows.append(Arrays.toString(row));
+        }
+        return "Board{" + "boardArray=" + rows + '}';
+    }
 }

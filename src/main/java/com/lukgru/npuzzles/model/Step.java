@@ -20,4 +20,9 @@ public class Step {
     public Step getPreviousState() {
         return this.previousState;
     }
+
+    @Override
+    public String toString() {
+        return "Step{" + "state=" + state  + '}';
+    }
 }
