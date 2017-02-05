@@ -118,7 +118,7 @@ public class NPuzzlesSolverTest {
         Board board = new InputParser().parse(new String[]{
                 "24 14 3 8 23",
                 "7 2 11 19 20",
-                "16 9 " + EMPTY + " 12 22",
+                "16 9 " + EMPTY + " 22 12",
                 "17 13 5 21 6",
                 "1 15 4 10 18"
         });
