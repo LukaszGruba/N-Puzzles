@@ -39,7 +39,7 @@ public class NPuzzlesSolver {
         open.add(new Step(board, null));
         openHashSet.add(board);
         Step currentStep = open.poll();
-        while (currentStep != null && !currentStep.getState().equals(target)) {
+        while (!currentStep.getState().equals(target)) {
             closed.add(currentStep.getState());
             addToOpenIfPossible(mover.fillGapByPieceFromUp(currentStep.getState()), currentStep, open, openHashSet, closed);
             addToOpenIfPossible(mover.fillGapByPieceFromDown(currentStep.getState()), currentStep, open, openHashSet, closed);
