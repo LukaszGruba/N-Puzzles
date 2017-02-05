@@ -4,6 +4,7 @@ import com.lukgru.npuzzles.heuristic.ManhattanHeuristic;
 import com.lukgru.npuzzles.io.InputParser;
 import com.lukgru.npuzzles.io.SolutionPrinter;
 import com.lukgru.npuzzles.model.Board;
+import com.lukgru.npuzzles.model.Step;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class Main {
     public static void main(String[] args) {
         Board board = getBoard();
         Board targetBoard = getTarget();
-        List<Board> solution = new NPuzzlesSolver(new ManhattanHeuristic()).solve(board, targetBoard);
+        List<Step> solution = new NPuzzlesSolver(new ManhattanHeuristic()).solve(board, targetBoard);
         new SolutionPrinter(System.out).print(solution);
     }
 

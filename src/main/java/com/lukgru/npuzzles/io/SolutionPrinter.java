@@ -1,6 +1,6 @@
 package com.lukgru.npuzzles.io;
 
-import com.lukgru.npuzzles.model.Board;
+import com.lukgru.npuzzles.model.Step;
 
 import java.io.PrintStream;
 import java.util.List;
@@ -16,10 +16,10 @@ public class SolutionPrinter {
         this.printStream = printStream;
     }
 
-    public void print(List<Board> solution) {
+    public void print(List<Step> solution) {
         printStream.println("Solution:");
         solution.stream()
-                .map(Board::toString)
+                .map(Step::toString)
                 .map(m -> m + " -> ")
                 .forEach(printStream::print);
     }

@@ -1,5 +1,6 @@
 package com.lukgru.npuzzles.model;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -48,5 +49,17 @@ public class Board {
     @Override
     public int hashCode() {
         return Arrays.deepHashCode(boardArray);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder rows = new StringBuilder();
+        for (Piece[] row : boardArray) {
+            Arrays.stream(row)
+                    .map(Piece::getValue)
+                    .forEach(value -> rows.append(String.format("%1$3s", value)));
+            rows.append("\n");
+        }
+        return rows.toString();
     }
 }
