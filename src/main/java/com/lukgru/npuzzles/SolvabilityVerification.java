@@ -19,11 +19,14 @@ public class SolvabilityVerification {
     private boolean canBeRearrangedToRegularEndState(Board board) {
         boolean solvable = false;
         int inversions = countInversions(board);
+        if (inversions == 0) {
+            return true;
+        }
         int N = board.getBoardArray().length;
-        if (isEven(N) && isOdd(inversions)) {
+        if (isOdd(N) && isEven(inversions)) {
             solvable = true;
         }
-        else if (isOdd(N)) {
+        else if (isEven(N)) {
             int emptyPositionFromDown = emptyPositionFromDown(board);
             if ((isEven(inversions) && isOdd(emptyPositionFromDown))
                     || (isOdd(inversions) && isEven(emptyPositionFromDown))) {
@@ -36,17 +39,21 @@ public class SolvabilityVerification {
     private int emptyPositionFromDown(Board board) {
         Piece[][] boardArray = board.getBoardArray();
         Position emptyPosition = new PiecePositionFinder().getElementPosition(boardArray, EMPTY);
-        return boardArray.length - 1 - emptyPosition.getY();
+        return boardArray.length - emptyPosition.getY();
     }
 
     private int countInversions(Board board) {
         Piece[][] pieces = board.getBoardArray();
         int N = pieces.length;
-        int[] all = new int[N * N];
+        int[] all = new int[(N * N) -1];
+        int index = 0;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 String value = pieces[i][j].getValue();
-                all[i * N + j] = EMPTY.equals(value) ? Integer.MAX_VALUE : Integer.parseInt(value);
+                if (!EMPTY.equals(value)) {
+                    all[index] = Integer.parseInt(value);
+                    index++;
+                }
             }
         }
 
