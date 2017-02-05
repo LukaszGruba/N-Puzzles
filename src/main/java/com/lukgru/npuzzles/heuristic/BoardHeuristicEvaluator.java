@@ -1,7 +1,6 @@
-package com.lukgru.npuzzles;
+package com.lukgru.npuzzles.heuristic;
 
 import com.lukgru.npuzzles.algorithm.PiecePositionFinder;
-import com.lukgru.npuzzles.heuristic.Heuristic;
 import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Position;
 

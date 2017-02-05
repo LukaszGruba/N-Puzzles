@@ -1,12 +1,10 @@
-package com.lukgru.npuzzles;
+package com.lukgru.npuzzles.heuristic;
 
-import com.lukgru.npuzzles.heuristic.Heuristic;
-import com.lukgru.npuzzles.heuristic.ManhattanHeuristic;
 import com.lukgru.npuzzles.io.InputParser;
 import com.lukgru.npuzzles.model.Board;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by Lukasz on 02.02.2017.

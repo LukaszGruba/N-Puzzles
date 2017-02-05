@@ -1,6 +1,8 @@
 package com.lukgru.npuzzles;
 
 import com.lukgru.npuzzles.algorithm.BoardPieceMover;
+import com.lukgru.npuzzles.algorithm.SolvabilityVerification;
+import com.lukgru.npuzzles.heuristic.BoardHeuristicEvaluator;
 import com.lukgru.npuzzles.heuristic.Heuristic;
 import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Step;
