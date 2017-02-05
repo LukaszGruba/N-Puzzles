@@ -34,7 +34,7 @@ public class BoardPieceMoverTest {
         assertPiecePosition("1", 0, 0, board.getBoardArray());
         assertPiecePosition("2", 1, 1, board.getBoardArray());
         assertPiecePosition("3", 0, 1, board.getBoardArray());
-        assertPiecePosition("X", 1, 0, board.getBoardArray());
+        assertPiecePosition(EMPTY, 1, 0, board.getBoardArray());
     }
 
     @Test
@@ -56,7 +56,7 @@ public class BoardPieceMoverTest {
         assertPiecePosition("1", 0, 0, board.getBoardArray());
         assertPiecePosition("2", 0, 1, board.getBoardArray());
         assertPiecePosition("3", 1, 0, board.getBoardArray());
-        assertPiecePosition("X", 1, 1, board.getBoardArray());
+        assertPiecePosition(EMPTY, 1, 1, board.getBoardArray());
     }
 
     @Test
@@ -78,7 +78,7 @@ public class BoardPieceMoverTest {
         assertPiecePosition("1", 0, 0, board.getBoardArray());
         assertPiecePosition("2", 1, 0, board.getBoardArray());
         assertPiecePosition("3", 1, 1, board.getBoardArray());
-        assertPiecePosition("X", 0, 1, board.getBoardArray());
+        assertPiecePosition(EMPTY, 0, 1, board.getBoardArray());
     }
 
     @Test
@@ -101,7 +101,7 @@ public class BoardPieceMoverTest {
         assertPiecePosition("1", 0, 0, board.getBoardArray());
         assertPiecePosition("2", 1, 0, board.getBoardArray());
         assertPiecePosition("3", 0, 1, board.getBoardArray());
-        assertPiecePosition("X", 1, 1, board.getBoardArray());
+        assertPiecePosition(EMPTY, 1, 1, board.getBoardArray());
     }
 
     @Test
@@ -123,7 +123,7 @@ public class BoardPieceMoverTest {
         assertPiecePosition("1", 0, 0, board.getBoardArray());
         assertPiecePosition("2", 1, 1, board.getBoardArray());
         assertPiecePosition("3", 0, 1, board.getBoardArray());
-        assertPiecePosition("X", 1, 0, board.getBoardArray());
+        assertPiecePosition(EMPTY, 1, 0, board.getBoardArray());
     }
 
     @Test
@@ -145,7 +145,7 @@ public class BoardPieceMoverTest {
         assertPiecePosition("1", 0, 0, board.getBoardArray());
         assertPiecePosition("2", 1, 0, board.getBoardArray());
         assertPiecePosition("3", 0, 1, board.getBoardArray());
-        assertPiecePosition("X", 1, 1, board.getBoardArray());
+        assertPiecePosition(EMPTY, 1, 1, board.getBoardArray());
     }
 
     @Test
@@ -167,7 +167,7 @@ public class BoardPieceMoverTest {
         assertPiecePosition("1", 0, 0, board.getBoardArray());
         assertPiecePosition("2", 1, 0, board.getBoardArray());
         assertPiecePosition("3", 1, 1, board.getBoardArray());
-        assertPiecePosition("X", 0, 1, board.getBoardArray());
+        assertPiecePosition(EMPTY, 0, 1, board.getBoardArray());
     }
 
     @Test
@@ -189,7 +189,7 @@ public class BoardPieceMoverTest {
         assertPiecePosition("1", 0, 0, board.getBoardArray());
         assertPiecePosition("2", 1, 0, board.getBoardArray());
         assertPiecePosition("3", 0, 1, board.getBoardArray());
-        assertPiecePosition("X", 1, 1, board.getBoardArray());
+        assertPiecePosition(EMPTY, 1, 1, board.getBoardArray());
     }
 
     private void assertPiecePosition(String value, int x, int y, Piece[][] pieces) {
