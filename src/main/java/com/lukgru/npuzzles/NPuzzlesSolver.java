@@ -5,8 +5,7 @@ import com.lukgru.npuzzles.heuristic.Heuristic;
 import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Step;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -14,6 +13,8 @@ import java.util.Queue;
 /**
  * Created by Lukasz on 21.01.2017.
  */
+//TODO: check if solvable
+//TODO: handle case when state is present in open/closed but with shorter path
 public class NPuzzlesSolver {
 
     private BoardHeuristicEvaluator heuristicEvaluator;
@@ -27,32 +28,30 @@ public class NPuzzlesSolver {
         heuristicEvaluator.setTargetState(target);
 
         Queue<Step> open = new PriorityQueue<>((s1, s2) -> compareBoards(s1.getState(), s2.getState()));
-        List<Step> closed = new ArrayList<>();
+        HashSet<Board> closed = new HashSet<>();
+        HashSet<Board> openHashSet = new HashSet<>();
         open.add(new Step(board, null));
+        openHashSet.add(board);
         Step currentStep = open.poll();
-
         while (currentStep != null && !currentStep.getState().equals(target)) {
-            closed.add(currentStep);
-            addToOpenIfPossible(mover.fillGapByPieceFromUp(currentStep.getState()), currentStep, open, closed);
-            addToOpenIfPossible(mover.fillGapByPieceFromDown(currentStep.getState()), currentStep, open, closed);
-            addToOpenIfPossible(mover.fillGapByPieceFromLeft(currentStep.getState()), currentStep, open, closed);
-            addToOpenIfPossible(mover.fillGapByPieceFromRight(currentStep.getState()), currentStep, open, closed);
+            closed.add(currentStep.getState());
+            addToOpenIfPossible(mover.fillGapByPieceFromUp(currentStep.getState()), currentStep, open, openHashSet, closed);
+            addToOpenIfPossible(mover.fillGapByPieceFromDown(currentStep.getState()), currentStep, open, openHashSet, closed);
+            addToOpenIfPossible(mover.fillGapByPieceFromLeft(currentStep.getState()), currentStep, open, openHashSet, closed);
+            addToOpenIfPossible(mover.fillGapByPieceFromRight(currentStep.getState()), currentStep, open, openHashSet, closed);
             currentStep = open.poll();
         }
 
         return currentStep.getAllSteps();
     }
 
-    private void addToOpenIfPossible(Board state, Step previousStep, Queue<Step> open, List<Step> closed) {
-        boolean isInOpen = contains(state, open);
-        boolean isInClosed = contains(state, closed);
+    private void addToOpenIfPossible(Board state, Step previousStep, Queue<Step> open, HashSet<Board> openHashSet, HashSet<Board> closed) {
+        boolean isInOpen = openHashSet.contains(state);
+        boolean isInClosed = closed.contains(state);
         if (!isInOpen && !isInClosed) {
             open.add(new Step(state, previousStep));
+            openHashSet.add(state);
         }
-    }
-
-    private boolean contains(Board state, Collection<Step> open) {
-        return open.stream().map(Step::getState).anyMatch(state::equals);
     }
 
     private int compareBoards(Board b1, Board b2) {
