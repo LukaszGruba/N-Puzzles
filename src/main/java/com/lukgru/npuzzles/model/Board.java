@@ -1,6 +1,5 @@
 package com.lukgru.npuzzles.model;
 
-import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Stream;

@@ -26,8 +26,8 @@ public class SolvabilityVerification {
             solvable = true;
         } else if (isEven(boardSize)) {
             int emptyPositionFromDown = emptyPositionFromDown(board);
-            if ((isEven(inversions) && isOdd(emptyPositionFromDown))
-                    || (isOdd(inversions) && isEven(emptyPositionFromDown))) {
+            if (isEven(inversions) && isOdd(emptyPositionFromDown)
+                    || isOdd(inversions) && isEven(emptyPositionFromDown)) {
                 solvable = true;
             }
         }
@@ -43,7 +43,7 @@ public class SolvabilityVerification {
     private int countInversions(Board board) {
         Piece[][] pieces = board.getBoardArray();
         int boardSize = pieces.length;
-        int[] all = new int[(boardSize * boardSize) - 1];
+        int[] all = new int[boardSize * boardSize - 1];
         int index = 0;
         for (int i = 0; i < boardSize; i++) {
             for (int j = 0; j < boardSize; j++) {
