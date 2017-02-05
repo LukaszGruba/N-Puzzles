@@ -13,12 +13,13 @@ import java.util.Queue;
 /**
  * Created by Lukasz on 21.01.2017.
  */
-//TODO: check if solvable
+//TODO: allow only square boards!!!
 //TODO: handle case when state is present in open/closed but with shorter path
 public class NPuzzlesSolver {
 
     private BoardHeuristicEvaluator heuristicEvaluator;
     private BoardPieceMover mover = new BoardPieceMover();
+    private SolvabilityVerification solvabilityVerification = new SolvabilityVerification();
 
     public NPuzzlesSolver(Heuristic heuristic) {
         this.heuristicEvaluator = new BoardHeuristicEvaluator(heuristic);
@@ -26,6 +27,9 @@ public class NPuzzlesSolver {
 
     public List<Step> solve(Board board, Board target) {
         heuristicEvaluator.setTargetState(target);
+        if (!solvabilityVerification.isSolvable(board, target)) {
+            throw new RuntimeException("Puzzle is not solvable.");
+        }
 
         Queue<Step> open = new PriorityQueue<>((s1, s2) -> compareBoards(s1.getState(), s2.getState()));
         HashSet<Board> closed = new HashSet<>();
