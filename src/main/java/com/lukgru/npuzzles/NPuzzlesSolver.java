@@ -5,7 +5,6 @@ import com.lukgru.npuzzles.algorithm.SolvabilityVerification;
 import com.lukgru.npuzzles.heuristic.BoardHeuristicEvaluator;
 import com.lukgru.npuzzles.heuristic.Heuristic;
 import com.lukgru.npuzzles.model.Board;
-import com.lukgru.npuzzles.model.Step;
 
 import java.util.*;
 
@@ -38,24 +37,39 @@ public class NPuzzlesSolver {
         open.add(board);
         openHashSet.add(board);
         Board currentStep = open.poll();
+        int currentCost = 0;
         while (!currentStep.equals(target)) {
             closed.add(currentStep);
-            addToOpenIfPossible(mover.fillGapByPieceFromUp(currentStep), currentStep, open, openHashSet, closed);
-            addToOpenIfPossible(mover.fillGapByPieceFromDown(currentStep), currentStep, open, openHashSet, closed);
-            addToOpenIfPossible(mover.fillGapByPieceFromLeft(currentStep), currentStep, open, openHashSet, closed);
-            addToOpenIfPossible(mover.fillGapByPieceFromRight(currentStep), currentStep, open, openHashSet, closed);
+            addToOpenIfPossible(mover.fillGapByPieceFromUp(currentStep), currentStep, open, openHashSet, closed, currentCost);
+            addToOpenIfPossible(mover.fillGapByPieceFromDown(currentStep), currentStep, open, openHashSet, closed, currentCost);
+            addToOpenIfPossible(mover.fillGapByPieceFromLeft(currentStep), currentStep, open, openHashSet, closed, currentCost);
+            addToOpenIfPossible(mover.fillGapByPieceFromRight(currentStep), currentStep, open, openHashSet, closed, currentCost);
             currentStep = open.poll();
+            currentCost = costMap.get(currentStep);
         }
 
-        return reconstuctSteps(currentStep);
+        return reconstructSteps(currentStep);
     }
 
-    private void addToOpenIfPossible(Board currentState, Board previousState, Queue<Board> open, HashSet<Board> openHashSet, HashSet<Board> closed) {
+    private List<Board> reconstructSteps(Board currentStep) {
+        List<Board> steps = new ArrayList<>();
+        Board b = currentStep;
+        while (b != null) {
+            steps.add(b);
+            b = previousStates.get(b);
+        }
+        Collections.reverse(steps);
+        return steps;
+    }
+
+    private void addToOpenIfPossible(Board currentState, Board previousState, Queue<Board> open, HashSet<Board> openHashSet, HashSet<Board> closed, int currentCost) {
         boolean isInOpen = openHashSet.contains(currentState);
         boolean isInClosed = closed.contains(currentState);
+        currentCost++;
         if (!isInClosed) {
-            if (!isInOpen || hasLowerCost(currentState, previousState)) {
+            if (!isInOpen || hasLowerCost(currentState, currentCost)) {
                 open.add(currentState);
+                costMap.put(currentState, currentCost);
                 previousStates.put(currentState, previousState);
                 openHashSet.add(currentState);
             }

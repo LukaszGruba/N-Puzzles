@@ -18,8 +18,8 @@ public class Main {
     public static void main(String[] args) {
         Board board = getBoard();
         Board targetBoard = getTarget();
-        List<Step> solution = new NPuzzlesSolver(new ManhattanHeuristic()).solve(board, targetBoard);
-        new SolutionPrinter(System.out).print(solution);
+        List<Board> solution = new NPuzzlesSolver(new ManhattanHeuristic()).solve(board, targetBoard);
+//        new SolutionPrinter(System.out).print(solution);
     }
 
     private static Board getBoard() {

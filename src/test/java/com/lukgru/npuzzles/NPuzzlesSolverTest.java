@@ -34,14 +34,14 @@ public class NPuzzlesSolverTest {
         });
 
         //when
-        List<Step> solution = solver.solve(board, target);
+        List<Board> solution = solver.solve(board, target);
         System.out.println("SOLUTION");
         solution.stream().forEach(System.out::print);
 
         //then
         assertNotNull(solution);
-        assertEquals(board, solution.get(0).getState());
-        assertEquals(target, solution.get(solution.size() - 1).getState());
+        assertEquals(board, solution.get(0));
+        assertEquals(target, solution.get(solution.size() - 1));
     }
 
     @Test(expected = RuntimeException.class)
@@ -75,14 +75,14 @@ public class NPuzzlesSolverTest {
         });
 
         //when
-        List<Step> solution = solver.solve(board, target);
+        List<Board> solution = solver.solve(board, target);
         System.out.println("SOLUTION");
         solution.stream().forEach(System.out::print);
 
         //then
         assertNotNull(solution);
-        assertEquals(board, solution.get(0).getState());
-        assertEquals(target, solution.get(solution.size() - 1).getState());
+        assertEquals(board, solution.get(0));
+        assertEquals(target, solution.get(solution.size() - 1));
     }
 
     @Test
@@ -102,14 +102,14 @@ public class NPuzzlesSolverTest {
         });
 
         //when
-        List<Step> solution = solver.solve(board, target);
+        List<Board> solution = solver.solve(board, target);
         System.out.println("SOLUTION");
         solution.stream().forEach(System.out::print);
 
         //then
         assertNotNull(solution);
-        assertEquals(board, solution.get(0).getState());
-        assertEquals(target, solution.get(solution.size() - 1).getState());
+        assertEquals(board, solution.get(0));
+        assertEquals(target, solution.get(solution.size() - 1));
     }
 
     @Test
@@ -131,13 +131,13 @@ public class NPuzzlesSolverTest {
         });
 
         //when
-        List<Step> solution = solver.solve(board, target);
+        List<Board> solution = solver.solve(board, target);
         System.out.println("SOLUTION");
         solution.stream().forEach(System.out::print);
 
         //then
         assertNotNull(solution);
-        assertEquals(board, solution.get(0).getState());
-        assertEquals(target, solution.get(solution.size() - 1).getState());
+        assertEquals(board, solution.get(0));
+        assertEquals(target, solution.get(solution.size() - 1));
     }
 }
