@@ -77,7 +77,7 @@ public class NPuzzlesSolverTest {
         //when
         List<Board> solution = solver.solve(board, target);
         System.out.println("SOLUTION");
-        solution.stream().forEach(System.out::print);
+        solution.stream().map(b -> b.toString() + "\n").forEach(System.out::print);
 
         //then
         assertNotNull(solution);

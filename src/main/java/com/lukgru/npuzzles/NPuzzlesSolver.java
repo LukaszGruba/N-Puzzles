@@ -31,7 +31,7 @@ public class NPuzzlesSolver {
             throw new RuntimeException("Puzzle is not solvable.");
         }
 
-        Queue<Board> open = new PriorityQueue<>(this::compareBoards);
+        Queue<Board> open = new PriorityQueue<>((a, b) -> compareBoards(a, costMap.get(a), b, costMap.get(b)));
         HashSet<Board> openHashSet = new HashSet<>();
         HashSet<Board> closed = new HashSet<>();
         open.add(board);
@@ -68,8 +68,8 @@ public class NPuzzlesSolver {
         currentCost++;
         if (!isInClosed) {
             if (!isInOpen || hasLowerCost(currentState, currentCost)) {
-                open.add(currentState);
                 costMap.put(currentState, currentCost);
+                open.add(currentState);
                 previousStates.put(currentState, previousState);
                 openHashSet.add(currentState);
             }
@@ -80,9 +80,9 @@ public class NPuzzlesSolver {
         return costMap.get(currentState) > currentCost;
     }
 
-    private int compareBoards(Board b1, Board b2) {
-        int b1Heuristic = heuristicEvaluator.evaluate(b1);
-        int b2Heuristic = heuristicEvaluator.evaluate(b2);
+    private int compareBoards(Board b1, Integer b1Cost, Board b2, Integer b2Cost) {
+        int b1Heuristic = b1Cost + heuristicEvaluator.evaluate(b1);
+        int b2Heuristic = b2Cost + heuristicEvaluator.evaluate(b2);
         return b1Heuristic - b2Heuristic;
     }
 }
