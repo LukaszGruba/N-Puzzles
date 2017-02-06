@@ -7,10 +7,7 @@ import com.lukgru.npuzzles.heuristic.Heuristic;
 import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Step;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * Created by Lukasz on 21.01.2017.
@@ -22,42 +19,51 @@ public class NPuzzlesSolver {
     private BoardHeuristicEvaluator heuristicEvaluator;
     private BoardPieceMover mover = new BoardPieceMover();
     private SolvabilityVerification solvabilityVerification = new SolvabilityVerification();
+    private Map<Board, Integer> costMap = new HashMap<>();
+    private Map<Board, Board> previousStates = new HashMap<>();
 
     public NPuzzlesSolver(Heuristic heuristic) {
         this.heuristicEvaluator = new BoardHeuristicEvaluator(heuristic);
     }
 
-    public List<Step> solve(Board board, Board target) {
+    public List<Board> solve(Board board, Board target) {
         heuristicEvaluator.setTargetState(target);
         if (!solvabilityVerification.isSolvable(board, target)) {
             throw new RuntimeException("Puzzle is not solvable.");
         }
 
-        Queue<Step> open = new PriorityQueue<>((s1, s2) -> compareBoards(s1.getState(), s2.getState()));
-        HashSet<Board> closed = new HashSet<>();
+        Queue<Board> open = new PriorityQueue<>(this::compareBoards);
         HashSet<Board> openHashSet = new HashSet<>();
-        open.add(new Step(board, null));
+        HashSet<Board> closed = new HashSet<>();
+        open.add(board);
         openHashSet.add(board);
-        Step currentStep = open.poll();
-        while (!currentStep.getState().equals(target)) {
-            closed.add(currentStep.getState());
-            addToOpenIfPossible(mover.fillGapByPieceFromUp(currentStep.getState()), currentStep, open, openHashSet, closed);
-            addToOpenIfPossible(mover.fillGapByPieceFromDown(currentStep.getState()), currentStep, open, openHashSet, closed);
-            addToOpenIfPossible(mover.fillGapByPieceFromLeft(currentStep.getState()), currentStep, open, openHashSet, closed);
-            addToOpenIfPossible(mover.fillGapByPieceFromRight(currentStep.getState()), currentStep, open, openHashSet, closed);
+        Board currentStep = open.poll();
+        while (!currentStep.equals(target)) {
+            closed.add(currentStep);
+            addToOpenIfPossible(mover.fillGapByPieceFromUp(currentStep), currentStep, open, openHashSet, closed);
+            addToOpenIfPossible(mover.fillGapByPieceFromDown(currentStep), currentStep, open, openHashSet, closed);
+            addToOpenIfPossible(mover.fillGapByPieceFromLeft(currentStep), currentStep, open, openHashSet, closed);
+            addToOpenIfPossible(mover.fillGapByPieceFromRight(currentStep), currentStep, open, openHashSet, closed);
             currentStep = open.poll();
         }
 
-        return currentStep.getAllSteps();
+        return reconstuctSteps(currentStep);
     }
 
-    private void addToOpenIfPossible(Board state, Step previousStep, Queue<Step> open, HashSet<Board> openHashSet, HashSet<Board> closed) {
-        boolean isInOpen = openHashSet.contains(state);
-        boolean isInClosed = closed.contains(state);
-        if (!isInOpen && !isInClosed) {
-            open.add(new Step(state, previousStep));
-            openHashSet.add(state);
+    private void addToOpenIfPossible(Board currentState, Board previousState, Queue<Board> open, HashSet<Board> openHashSet, HashSet<Board> closed) {
+        boolean isInOpen = openHashSet.contains(currentState);
+        boolean isInClosed = closed.contains(currentState);
+        if (!isInClosed) {
+            if (!isInOpen || hasLowerCost(currentState, previousState)) {
+                open.add(currentState);
+                previousStates.put(currentState, previousState);
+                openHashSet.add(currentState);
+            }
         }
+    }
+
+    private boolean hasLowerCost(Board currentState, int currentCost) {
+        return costMap.get(currentState) < currentCost;
     }
 
     private int compareBoards(Board b1, Board b2) {
