@@ -77,7 +77,7 @@ public class NPuzzlesSolver {
     }
 
     private boolean hasLowerCost(Board currentState, int currentCost) {
-        return costMap.get(currentState) < currentCost;
+        return costMap.get(currentState) > currentCost;
     }
 
     private int compareBoards(Board b1, Board b2) {
