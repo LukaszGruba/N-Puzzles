@@ -15,7 +15,6 @@ import java.util.Queue;
 /**
  * Created by Lukasz on 21.01.2017.
  */
-//TODO: allow only square boards!!!
 //TODO: handle case when state is present in open/closed but with shorter path
 public class NPuzzlesSolver {
 
