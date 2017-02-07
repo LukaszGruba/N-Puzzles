@@ -27,6 +27,10 @@ public class Board {
         return newPieces;
     }
 
+    public int getN() {
+        return boardArray.length;
+    }
+
     public Stream<Piece> piecesStream() {
         return Arrays.stream(boardArray).flatMap(Arrays::stream);
     }
