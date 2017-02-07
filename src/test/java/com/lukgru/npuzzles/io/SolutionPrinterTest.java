@@ -38,10 +38,10 @@ public class SolutionPrinterTest {
     public void shouldPrintStepsProperly() {
         //given
         List<Step> solution = Arrays.asList(
-                mockStep("1"),
-                mockStep("2"),
-                mockStep("3"),
-                mockStep("4")
+                mockStep("1\n"),
+                mockStep("2\n"),
+                mockStep("3\n"),
+                mockStep("4\n")
         );
         ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
         doNothing().when(printStream).print(captor.capture());
@@ -51,10 +51,10 @@ public class SolutionPrinterTest {
         
         //then
         List<String> allValues = captor.getAllValues();
-        assertEquals("1 -> ", allValues.get(0));
-        assertEquals("2 -> ", allValues.get(1));
-        assertEquals("3 -> ", allValues.get(2));
-        assertEquals("4 -> ", allValues.get(3));
+        assertEquals("1\n--\n", allValues.get(0));
+        assertEquals("2\n--\n", allValues.get(1));
+        assertEquals("3\n--\n", allValues.get(2));
+        assertEquals("4\n--\n", allValues.get(3));
     }
 
     private Step mockStep(String s) {

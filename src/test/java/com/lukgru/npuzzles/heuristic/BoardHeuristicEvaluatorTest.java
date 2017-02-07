@@ -4,6 +4,7 @@ import com.lukgru.npuzzles.io.InputParser;
 import com.lukgru.npuzzles.model.Board;
 import org.junit.Test;
 
+import static com.lukgru.npuzzles.model.Piece.EMPTY;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -20,12 +21,12 @@ public class BoardHeuristicEvaluatorTest {
         Board board = new InputParser().parse(new String[]{
             "1 2 3",
             "4 5 6",
-            "7 8 X"
+            "7 8 " + EMPTY
         });
         Board targetBoard = new InputParser().parse(new String[]{
                 "1 2 3",
                 "4 5 6",
-                "7 8 X"
+                "7 8 " + EMPTY
         });
 
         //when
@@ -42,11 +43,11 @@ public class BoardHeuristicEvaluatorTest {
         Board board = new InputParser().parse(new String[]{
                 "1 2 3",
                 "4 5 6",
-                "7 8 X"
+                "7 8 " + EMPTY
         });
         Board targetBoard = new InputParser().parse(new String[]{
                 "1 4 3",
-                "2 8 X",
+                "2 8 " + EMPTY,
                 "7 5 6"
         });
 
@@ -64,10 +65,10 @@ public class BoardHeuristicEvaluatorTest {
         Board board = new InputParser().parse(new String[]{
                 "1 2 3",
                 "4 5 6",
-                "7 8 X"
+                "7 8 " + EMPTY
         });
         Board targetBoard = new InputParser().parse(new String[]{
-                "X 8 7",
+                EMPTY + " 8 7",
                 "6 5 4",
                 "3 2 1"
         });

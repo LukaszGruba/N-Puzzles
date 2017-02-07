@@ -5,6 +5,7 @@ import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Position;
 import org.junit.Test;
 
+import static com.lukgru.npuzzles.model.Piece.EMPTY;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -18,7 +19,7 @@ public class PiecePositionFinderTest {
         Board board = new InputParser().parse(new String[]{
             "1 2 3",
             "4 5 6",
-            "7 8 X"
+            "7 8 " + EMPTY
         });
 
         //when
@@ -30,7 +31,7 @@ public class PiecePositionFinderTest {
         Position p6 = new PiecePositionFinder().getElementPosition(board.getBoardArray(), "6");
         Position p7 = new PiecePositionFinder().getElementPosition(board.getBoardArray(), "7");
         Position p8 = new PiecePositionFinder().getElementPosition(board.getBoardArray(), "8");
-        Position pX = new PiecePositionFinder().getElementPosition(board.getBoardArray(), "X");
+        Position p_ = new PiecePositionFinder().getElementPosition(board.getBoardArray(), "_");
 
 
         //then
@@ -42,7 +43,7 @@ public class PiecePositionFinderTest {
         assertEquals(new Position(2, 1), p6);
         assertEquals(new Position(0, 2), p7);
         assertEquals(new Position(1, 2), p8);
-        assertEquals(new Position(2, 2), pX);
+        assertEquals(new Position(2, 2), p_);
     }
     
     @Test(expected = IllegalArgumentException.class)
@@ -51,7 +52,7 @@ public class PiecePositionFinderTest {
         Board board = new InputParser().parse(new String[]{
                 "1 2 3",
                 "4 5 6",
-                "7 8 X"
+                "7 8 " + EMPTY
         });
         String illegalElement = "9";
 
