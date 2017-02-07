@@ -19,16 +19,20 @@ public class Main {
     private BoardValidation validation = new BoardValidation();
 
     public static void main(String[] args) {
-        Main main = new Main();
-        try {
-            Board board = main.getBoard();
-            Board target = main.getTarget();
-            main.validation.validateSameSize(board, target);
-            main.validation.validateSameElements(board, target);
-            List<Step> solution = new NPuzzlesSolver(new ManhattanHeuristic()).solve(board, target);
-            new SolutionPrinter(System.out).print(solution);
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+        boolean success = false;
+        while (!success) {
+            Main main = new Main();
+            try {
+                Board board = main.getBoard();
+                Board target = main.getTarget();
+                main.validation.validateSameSize(board, target);
+                main.validation.validateSameElements(board, target);
+                List<Step> solution = new NPuzzlesSolver(new ManhattanHeuristic()).solve(board, target);
+                new SolutionPrinter(System.out).print(solution);
+                success = true;
+            } catch (RuntimeException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
         }
     }
 
@@ -49,8 +53,8 @@ public class Main {
         String line = scanner.nextLine();
         List<String> lines = new LinkedList<>();
         while (!line.isEmpty()) {
-            line = scanner.nextLine();
             lines.add(line);
+            line = scanner.nextLine();
         }
         return lines.toArray(new String[lines.size()]);
     }

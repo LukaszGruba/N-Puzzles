@@ -83,9 +83,9 @@ public class BoardValidationTest {
     public void shouldBeOkForSameElements() {
         //given
         Board board = new InputParser().parse(new String[] {
-                "_ 7 1",
-                "8 6 4",
-                "2 5 3"
+                "1 6 8",
+                "7 3 2",
+                "_ 4 5"
         });
         Board target = new InputParser().parse(new String[] {
                 "1 2 3",

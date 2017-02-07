@@ -20,10 +20,10 @@ public class BoardValidation {
     }
 
     public void validateSameElements(Board board, Board targetBoard) {
-        Set<String> collect = targetBoard.piecesStream().map(Piece::getValue).collect(toSet());
+        Set<String> targetElements = targetBoard.piecesStream().map(Piece::getValue).collect(toSet());
         boolean allMatch = board.piecesStream()
                 .map(Piece::getValue)
-                .allMatch(collect::contains);
+                .allMatch(targetElements::contains);
         if (!allMatch) {
             throw new RuntimeException("Board and target state have to contain same elements.");
         }

@@ -1,5 +1,6 @@
 package com.lukgru.npuzzles.io;
 
+import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Step;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,9 +58,11 @@ public class SolutionPrinterTest {
     }
 
     private Step mockStep(String s) {
-        Step mock = mock(Step.class);
-        when(mock.toString()).thenReturn(s);
-        return mock;
+        Board board = mock(Board.class);
+        when(board.toString()).thenReturn(s);
+        Step step = mock(Step.class);
+        when(step.getState()).thenReturn(board);
+        return step;
     }
 
 }
