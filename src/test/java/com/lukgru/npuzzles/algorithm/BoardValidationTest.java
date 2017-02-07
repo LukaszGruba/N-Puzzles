@@ -6,8 +6,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Lukasz on 07.02.2017.
  */
@@ -101,36 +99,109 @@ public class BoardValidationTest {
 
     @Test
     public void shouldThrowForRepeatedElements() {
+        //expect
+        expectedException.expect(RuntimeException.class);
+        expectedException.expectMessage("Every piece has to be unique.");
 
+        //given
+        Board board = new InputParser().parse(new String[] {
+                "10 2 3",
+                "4 5 10",
+                "7 8 _"
+        });
+
+        //when
+        validation.validateNonRepeatedPieces(board);
     }
 
     @Test
     public void shouldBeOkForUniqueElements() {
+        //given
+        Board board = new InputParser().parse(new String[] {
+                "10 2 3",
+                "4 5 6",
+                "7 8 _"
+        });
 
+        //when
+        validation.validateNonRepeatedPieces(board);
     }
 
     @Test
     public void shouldThrowForMultipleEmptyPieces() {
+        //expect
+        expectedException.expect(RuntimeException.class);
+        expectedException.expectMessage("Board has to have one empty element.");
 
+        //given
+        Board board = new InputParser().parse(new String[] {
+                "10 2 3",
+                "4 _ 5",
+                "7 8 _"
+        });
+
+        //when
+        validation.validateOnlyOneEmpty(board);
     }
 
     @Test
     public void shouldThrowForNoneEmptyPiece() {
+        //expect
+        expectedException.expect(RuntimeException.class);
+        expectedException.expectMessage("Board has to have one empty element.");
 
+        //given
+        Board board = new InputParser().parse(new String[] {
+                "9 2 3",
+                "4 1 5",
+                "7 8 6"
+        });
+
+        //when
+        validation.validateOnlyOneEmpty(board);
     }
 
     @Test
     public void shouldBeOkForSingleEmptyPiece() {
+        //given
+        Board board = new InputParser().parse(new String[] {
+                "_ 2 3",
+                "4 1 5",
+                "7 8 6"
+        });
 
+        //when
+        validation.validateOnlyOneEmpty(board);
     }
 
     @Test
     public void shouldThrowForNonSquareBoard() {
+        //expect
+        expectedException.expect(RuntimeException.class);
+        expectedException.expectMessage("Board has to be NxN square.");
 
+        //given
+        Board board = new InputParser().parse(new String[] {
+                "9 2 3",
+                "4 1 5",
+                "7 8 6",
+                "11 _ 10"
+        });
+
+        //when
+        validation.validateSquare(board);
     }
 
     @Test
     public void shouldBeOkForSquareBoard() {
+        //given
+        Board board = new InputParser().parse(new String[] {
+                "_ 2 3",
+                "4 1 5",
+                "7 8 6",
+        });
 
+        //when
+        validation.validateSquare(board);
     }
 }
