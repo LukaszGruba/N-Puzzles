@@ -1,12 +1,12 @@
 package com.lukgru.npuzzles.algorithm;
 
+import static java.util.stream.Collectors.toSet;
+
 import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Piece;
 
 import java.util.Arrays;
 import java.util.Set;
-
-import static java.util.stream.Collectors.toSet;
 
 /**
  * Created by Lukasz on 07.02.2017.

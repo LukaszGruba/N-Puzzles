@@ -1,12 +1,12 @@
 package com.lukgru.npuzzles.io;
 
+import static java.util.stream.Collectors.joining;
+
 import com.lukgru.npuzzles.model.Step;
 
 import java.io.PrintStream;
 import java.util.List;
 import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.joining;
 
 /**
  * Created by Lukasz on 22.01.2017.
