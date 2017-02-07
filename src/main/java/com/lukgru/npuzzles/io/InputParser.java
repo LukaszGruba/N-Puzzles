@@ -1,17 +1,18 @@
 package com.lukgru.npuzzles.io;
 
+import com.lukgru.npuzzles.algorithm.BoardValidation;
 import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Piece;
 import com.lukgru.npuzzles.model.Position;
-import sun.security.util.Length;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 /**
  * Created by Lukasz on 22.01.2017.
  */
 public class InputParser {
+
+    private BoardValidation validation = new BoardValidation();
 
     public Board parse(String[] lines) {
         Objects.nonNull(lines);
@@ -25,38 +26,9 @@ public class InputParser {
             }
         }
         Board board = new Board(pieces);
-        validateSquare(board);
-        validateOnlyOneEmpty(board);
-        validateNonRepeatedPieces(board);
+        validation.validateSquare(board);
+        validation.validateOnlyOneEmpty(board);
+        validation.validateNonRepeatedPieces(board);
         return board;
-    }
-
-    private void validateNonRepeatedPieces(Board board) {
-        long piecesAmount = board.piecesStream().count();
-        long uniquePiecesAmount = board.piecesStream().map(Piece::getValue).distinct().count();
-        if (piecesAmount != uniquePiecesAmount) {
-            throw new RuntimeException("Every piece has to be unique.");
-        }
-    }
-
-    private void validateOnlyOneEmpty(Board board) {
-        long numberOfEmptyPieces = board.piecesStream()
-                .map(Piece::getValue)
-                .filter(v -> v.equals(Piece.EMPTY))
-                .count();
-        if (numberOfEmptyPieces != 1) {
-            throw new RuntimeException("Board has to have one empty element.");
-        }
-    }
-
-    private void validateSquare(Board board) {
-        Piece[][] pieces = board.getBoardArray();
-        int squareSize = pieces.length;
-        boolean isSquare = Arrays.stream(pieces)
-                .map(r -> r.length)
-                .allMatch(length -> length == squareSize);
-        if (!isSquare) {
-            throw new RuntimeException("Board has to be NxN square.");
-        }
     }
 }

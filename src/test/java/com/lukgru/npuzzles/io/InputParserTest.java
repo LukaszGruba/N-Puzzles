@@ -1,9 +1,14 @@
 package com.lukgru.npuzzles.io;
 
+import com.lukgru.npuzzles.algorithm.BoardValidation;
 import com.lukgru.npuzzles.model.Board;
 import com.lukgru.npuzzles.model.Piece;
 import com.lukgru.npuzzles.model.Position;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import static com.lukgru.npuzzles.model.Piece.EMPTY;
 import static org.junit.Assert.assertEquals;
@@ -11,9 +16,14 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Lukasz on 27.01.2017.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class InputParserTest {
 
-    private InputParser inputParser = new InputParser();
+    @Mock
+    private BoardValidation validation;
+
+    @InjectMocks
+    private InputParser inputParser;
 
     @Test
     public void createCorrect1x1Board() {
