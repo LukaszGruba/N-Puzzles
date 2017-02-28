@@ -6,7 +6,14 @@ import com.lukgru.npuzzles.heuristic.BoardHeuristicEvaluator;
 import com.lukgru.npuzzles.heuristic.Heuristic;
 import com.lukgru.npuzzles.model.Board;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * Created by Lukasz on 21.01.2017.
@@ -62,7 +69,8 @@ public class NPuzzlesSolver {
         return steps;
     }
 
-    private void addToOpenIfPossible(Board currentState, Board previousState, Queue<Board> open, HashSet<Board> openHashSet, HashSet<Board> closed, int currentCost) {
+    private void addToOpenIfPossible(Board currentState, Board previousState, Queue<Board> open,
+                                     HashSet<Board> openHashSet, HashSet<Board> closed, int currentCost) {
         boolean isInOpen = openHashSet.contains(currentState);
         boolean isInClosed = closed.contains(currentState);
         currentCost++;
