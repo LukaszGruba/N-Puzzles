@@ -36,7 +36,7 @@ public class NPuzzlesSolverTest {
         //when
         List<Board> solution = solver.solve(board, target);
         System.out.println("SOLUTION");
-        solution.stream().forEach(System.out::print);
+        solution.forEach(System.out::print);
 
         //then
         assertNotNull(solution);
@@ -104,7 +104,7 @@ public class NPuzzlesSolverTest {
         //when
         List<Board> solution = solver.solve(board, target);
         System.out.println("SOLUTION");
-        solution.stream().forEach(System.out::print);
+        solution.forEach(System.out::print);
 
         //then
         assertNotNull(solution);
@@ -133,7 +133,7 @@ public class NPuzzlesSolverTest {
         //when
         List<Board> solution = solver.solve(board, target);
         System.out.println("SOLUTION");
-        solution.stream().forEach(System.out::print);
+        solution.forEach(System.out::print);
 
         //then
         assertNotNull(solution);
