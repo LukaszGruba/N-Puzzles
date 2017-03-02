@@ -40,6 +40,7 @@ public class NPuzzlesSolverTest {
 
         //then
         assertNotNull(solution);
+        assertEquals(4, solution.size());
         assertEquals(board, solution.get(0));
         assertEquals(target, solution.get(solution.size() - 1));
     }
@@ -81,6 +82,7 @@ public class NPuzzlesSolverTest {
 
         //then
         assertNotNull(solution);
+        assertEquals(25, solution.size());
         assertEquals(board, solution.get(0));
         assertEquals(target, solution.get(solution.size() - 1));
     }
